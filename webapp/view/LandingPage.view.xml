@@ -1,0 +1,84 @@
+<mvc:View controllerName="com.bsilva.app.controller.LandingPage" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<Page id="idPage" title="Patients" navButtonPress="onNavButtonPress" showNavButton="true">
+		<content>
+			<f:SimpleForm id="Pat_cForm" editable="true" layout="ResponsiveGridLayout" width="100%">
+				<f:content>
+					<core:Title text="Insert Patient Data"/>
+					<Label id="lb_cPatId" text="Id" labelFor="ip_cPatId"></Label>
+					<Input id="ip_cPatId" value="{newPatient>/id}" enabled="false"/>
+					<Label id="lb_cName" text="Name" labelFor="ip_cName"></Label>
+					<Input id="ip_cName" value="{newPatient>/name}"/>
+					<Label id="lb_cDOB" text="DOB" labelFor="ip_cDOB"></Label>
+					<DatePicker id="ip_cDOB" value="{newPatient>/dob}" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"/>
+					<Label id="lb_cDesig" text="Designation" labelFor="ip_cDesig"></Label>
+					<Input id="ip_cDesig" value="{newPatient>/designation}"/>
+					<Label id="lb_cGender" text="Gender" labelFor="ip_cGender"></Label>
+					<Input id="ip_cGender" value="{newPatient>/gender}"/>
+					<Button id="patadd" text="Create" press="handleOperationBtncreate"></Button>
+					<core:Title text="Get Patient Data"/>
+					<Label id="lb_sPatId" text="Id" labelFor="ip_sPatId"></Label>
+					<Input id="ip_sPatId" value=""/>
+					<Button id="patsearch" text="Search" press="handleSearch"></Button>
+					<Label id="slbl_name" text="Name" visible="{searchPatient>/visible}"></Label>
+					<Text id="s_txtName" text="{searchPatient>/name}"></Text>
+					<Label id="slbl_dob" text="dob" visible="{searchPatient>/visible}"></Label>
+					<Text id="s_txtDob" text="{searchPatient>/dob}"></Text>
+					<Label id="slbl_desig" text="Designation" visible="{searchPatient>/visible}"></Label>
+					<Text id="s_txtdesig" text="{searchPatient>/designation}"></Text>
+					<Label id="slbl_gender" text="Gender" visible="{searchPatient>/visible}"></Label>
+					<Text id="s_txtgender" text="{searchPatient>/gender}"></Text>
+				</f:content>
+			</f:SimpleForm>
+			<table:Table id="tbl_odata" visibleRowCount="6" rowSelectionChange="rowSelect" selectionMode="Single" selectionBehavior="Row">
+				<table:title>
+					<Text text="Patients"></Text>
+				</table:title>
+				<table:columns>
+					<table:Column id="Coln_2">
+						<Label text="Id"/>
+						<table:template>
+							<Text id="txt_PatId" text="{id}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_3">
+						<Label text="Name"/>
+						<table:template>
+							<Text id="txt_Name" text="{name}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_4">
+						<Label text="DOB"/>
+						<table:template>
+							<Text id="txt_DOB" text="{dob}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_5">
+						<Label text="Desig"/>
+						<table:template>
+							<Text id="txt_Desig" text="{designation}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_1">
+						<Label text="Gender"/>
+						<table:template>
+							<Text id="txt_Gender" text="{gender}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_6">
+						<Label text=""/>
+						<table:template>
+							<Button press="onConsultations" icon="sap-icon://activity-items"></Button>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button press="onCreateConsultations" icon="sap-icon://add" text="Consultations" type="Emphasized" class="sapUiSmallMarginEnd"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

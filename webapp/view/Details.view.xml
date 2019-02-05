@@ -1,0 +1,62 @@
+<mvc:View controllerName="com.bsilva.app.controller.Details" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<Page title="Consultations" navButtonPress="onNavButtonPress" showNavButton="true">
+		<content>
+			<table:Table id="tbl_cons" visibleRowCount="6" selectionMode="Single" selectionBehavior="Row" rowSelectionChange="rowSelect">
+				<table:title>
+					<Text text="Consultations"></Text>
+				</table:title>
+				<table:columns>
+					<table:Column id="Coln_2">
+						<Label text="Patient Id"/>
+						<table:template>
+							<Text id="txt_cons_PatId" text="{idPat}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_3">
+						<Label text="Patient Name"/>
+						<table:template>
+							<Text id="txt_cons_Name" text="{namePat}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_4">
+						<Label text="Specialty"/>
+						<table:template>
+							<Text id="txt_cons_Specialty" text="{speciality}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_5">
+						<Label text="Date"/>
+						<table:template>
+							<Text id="txt_cons_Date" text="{date}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_1">
+						<Label text="Time"/>
+						<table:template>
+							<Text id="txt_cons_Time" text="{time}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_6">
+						<Label text="Observations"/>
+						<table:template>
+							<Text id="txt_cons_Observations" text="{observations}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_7">
+						<Label text=""/>
+						<table:template>
+							<Button press="onDeleteConsultation" icon="sap-icon://delete"></Button>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_8">
+						<Label text=""/>
+						<table:template>
+							<Button press="onEditConsultations" icon="sap-icon://edit"></Button>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</content>
+	</Page>
+</mvc:View>

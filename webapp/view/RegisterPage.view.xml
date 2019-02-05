@@ -1,0 +1,26 @@
+<mvc:View controllerName="com.bsilva.app.controller.RegisterPage" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<Page title="Register" navButtonPress="onNavButtonPress" showNavButton="true">
+		<content>
+		<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+				<Label id="lbr_id" text="ID:" labelFor="ipr_id"></Label>
+				<Input id="ipr_id" value="{newDoctor>/id}" enabled="false"/>
+			</VBox>
+			<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+				<Label id="lbr_name" text="Name:" labelFor="ipr_name"></Label>
+				<Input id="ipr_name" value="{newDoctor>/name}"/>
+			</VBox>
+			<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+				<Label id="lbr_password" text="Password:" labelFor="ipr_password"></Label>
+				<Input id="ipr_password" value="{newDoctor>/password}" type="Password"/>
+			</VBox>
+			<VBox alignItems="Center" class="sapUiLargeMarginTop" justifyContent="Center">
+				<Label id="lbr_email" text="E-mail:" labelFor="ipr_email"></Label>
+				<Input id="ipr_email" value="{newDoctor>/email}" enabled="true" type="Email"/>
+			</VBox>
+			<HBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+				<Button press="onRegister" text="Register"/>
+			</HBox>
+		</content>
+	</Page>
+</mvc:View>

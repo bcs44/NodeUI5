@@ -1,0 +1,153 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "com.bsilva.app",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.bsilva.app.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"viewType": "JS",
+				"routerClass": "sap.m.routing.Router",
+				"viewPath": "com.bsilva.app.view",
+				"controlId": "appView",
+				"controlAggregation": "pages",
+				"transition": "slide"
+
+			},
+			"routes": [{
+				"name": "Login",
+				"pattern": "",
+				"greedy": false,
+				"target": [
+					"Login"
+				]
+			},{
+				"name": "LandingPage",
+				"pattern": "LandingPage/{Name}/{Id}",
+				"greedy": false,
+				"target": [
+					"LandingPage"
+				]
+			}, {
+				"name": "Details",
+				"pattern": "Details/{Id}/{Name}/{Designation}/{Gender}/{idDoctor}",
+				"greedy": false,
+				"target": [
+					"Details"
+				]
+			}, {
+				"name": "CreateConsultations",
+				"pattern": "CreateConsultations/{idDoctor}",
+				"greedy": false,
+				"target": [
+					"CreateConsultations"
+				]
+			}, {
+				"name": "RegisterPage",
+				"pattern": "RegisterPage",
+				"greedy": false,
+				"target": [
+					"RegisterPage"
+				]
+			}
+
+			],
+			"targets": {
+				"Login": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Login"
+				},
+				"LandingPage": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "LandingPage"
+				},
+				"Details": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "Details"
+				},
+				"CreateConsultations": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "CreateConsultations"
+				},
+				"RegisterPage": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "RegisterPage"
+				}
+				
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

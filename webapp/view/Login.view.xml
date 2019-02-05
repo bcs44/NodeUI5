@@ -1,0 +1,23 @@
+<mvc:View controllerName="com.bsilva.app.controller.Login" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<App>
+		<pages>
+			<Page title="Login">
+				<content>
+					<VBox alignItems="Center" class="sapUiLargeMarginTop" justifyContent="Center">
+						<Label id="lb_email" text="E-mail:" labelFor="ip_email"></Label>
+						<Input id="ip_email" value="{login>/email}" enabled="true" type="Email"/>
+					</VBox>
+					<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+						<Label id="lb_password" text="Password:" labelFor="ip_password"></Label>
+						<Input id="ip_password" value="{login>/password}" type="Password"/>
+					</VBox>
+					<HBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+						<Button press="onLogin" text="Login"/>
+						<Button press="onRegister" text="Register"/>
+					</HBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

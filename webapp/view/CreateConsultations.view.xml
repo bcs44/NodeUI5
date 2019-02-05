@@ -1,0 +1,62 @@
+<mvc:View controllerName="com.bsilva.app.controller.CreateConsultations" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table">
+	<Page title="Create Consultations" navButtonPress="onNavButtonPress" showNavButton="true">
+		<content>
+			<table:Table id="tbl_pat" visibleRowCount="6" selectionMode="Single" selectionBehavior="Row" rowSelectionChange="rowSelect">
+				<table:title>
+					<Text text="Patientes"></Text>
+				</table:title>
+				<table:columns>
+					<table:Column id="Coln_2">
+						<Label text="Id"/>
+						<table:template>
+							<Text id="txt_PatId" text="{id}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_3">
+						<Label text="Name"/>
+						<table:template>
+							<Text id="txt_Name" text="{name}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_4">
+						<Label text="DOB"/>
+						<table:template>
+							<Text id="txt_DOB" text="{dob}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_5">
+						<Label text="Desig"/>
+						<table:template>
+							<Text id="txt_Desig" text="{designation}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column id="Coln_1">
+						<Label text="Gender"/>
+						<table:template>
+							<Text id="txt_Gender" text="{gender}"></Text>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+			<form:SimpleForm id="form_cons" layout="ResponsiveGridLayout" editable="true" title="Choose Patient" adjustLabelSpan="false" labelSpanXL="2"
+				labelSpanL="2" labelSpanM="2" labelSpanS="5">
+				<Label id="lb_spec" text="Speciality" labelFor="ip_spec"></Label>
+				<Input id="ip_spec" value="{newConsultation>/speciality}" enabled="true" width="50%"/>
+				<Label id="lb_time" text="Time" labelFor="ip_time"></Label>
+				<TimePicker id="ip_time" value="{newConsultation>/time}" valueFormat="HH:mm:ss" displayFormat="HH:mm:ss" width="50%"/>
+				<Label id="lb_date" text="Date" labelFor="ip_date"></Label>
+				<DatePicker id="ip_date" value="{newConsultation>/date}" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" width="50%"/>
+				<Label id="lb_obs" text="Observations" labelFor="ip_obs"></Label>
+				<TextArea id="ip_obs" value="{newConsultation>/observations}" width="50%"/>
+			</form:SimpleForm>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button press="onCreateConsultations" icon="sap-icon://add" type="Emphasized" class="sapUiSmallMarginEnd"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>
