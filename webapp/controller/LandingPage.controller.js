@@ -43,7 +43,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/lastPatient" ,
+			url: "/GetLastPatient" ,
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -67,7 +67,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/patient/" + sap.ui.getCore().byId(that.getView().sId + "--ip_sPatId"),
+			url: "/getPatientById/" + sap.ui.getCore().byId(that.getView().sId + "--ip_sPatId"),
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -104,7 +104,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 
 		var aData = jQuery.ajax({
 			type: "POST",
-			url: "/patient",
+			url: "/PostnewPatient",
 			dataType: "json",
 			data: patData,
 			async: false,
@@ -118,7 +118,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/patientByDoctor/" + that._idDoctor,
+			url: "/GetPatientByDoctor/" + that._idDoctor,
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -139,7 +139,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 
 	handlebtn_Delete: function(oEvent) {
 		jQuery.ajax({
-			url: "/patient/" + that.getView().getModel("editPatient").getData().id,
+			url: "/DeletePatientById/" + that.getView().getModel("editPatient").getData().id,
 			type: "DELETE",
 			dataType: "json",
 			success: function(response, status) {
@@ -175,7 +175,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 
 		var patData = that.getView().getModel("editPatient").getData();
 
-		var url = "/patient/" + patData.id;
+		var url = "/UpdatePatientById/" + patData.id;
 
 		jQuery.ajax({
 			url: url,
@@ -324,7 +324,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/patientByDoctor/" + idDoctor,
+			url: "/GetPatientByDoctor/" + idDoctor,
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {

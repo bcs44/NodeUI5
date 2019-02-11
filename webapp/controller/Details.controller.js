@@ -22,7 +22,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/consultation/" + _id,
+			url: "/getConsultationById/" + _id,
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -84,7 +84,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 	_onDelete: function(id){
 
 		jQuery.ajax({
-			url: "/consultation/" + id,
+			url: "/deleteConsultationById/" + id,
 			type: "DELETE",
 			dataType: "json",
 			success: function(response, status) {
@@ -218,7 +218,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 		var consData = that._EditDialog.getModel("editConsModel").getData();;
 
-		var url = "/consultation/" + consData._id;
+		var url = "/UpdateConsultationById/" + consData._id;
 
 		jQuery.ajax({
 			url: url,

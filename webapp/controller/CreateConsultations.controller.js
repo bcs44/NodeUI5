@@ -27,7 +27,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/patientByDoctor/" + idDoctor,
+			url: "/GetPatientByDoctor/" + idDoctor,
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -90,7 +90,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 		};
 		var aData = jQuery.ajax({
 			type: "POST",
-			url: "/consultation",
+			url: "/PostNewConsultation",
 			dataType: "json",
 			data: consData,
 			async: false,

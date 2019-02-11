@@ -3,7 +3,7 @@ module.exports = function(app, db) {
 
 
 /**
- * @api {post} /consultation Insert a new Consultation
+ * @api {post} /PostNewConsultation Insert a new Consultation
  * @apiGroup Consultations
  *
  * @apiParamExample {json} Input
@@ -23,7 +23,7 @@ module.exports = function(app, db) {
  */
 
 	//usado (CreateConsultations - onCreateConsultations)
-	app.post('/consultation', (req, res) => {
+	app.post('/PostNewConsultation', (req, res) => {
 		var cons = req.body;
 	//	console.log('Adding consultation: ' + JSON.stringify(cons));
 		db.collection('consdata', function(err, collection) {
@@ -45,7 +45,7 @@ module.exports = function(app, db) {
 
 
 /**
- * @api {get} /consultation/:id Get a consultation by Id
+ * @api {get} /getConsultationById/:id Get a consultation by Id
  * @apiName consultation
  * @apiGroup Consultations
  *
@@ -62,7 +62,7 @@ module.exports = function(app, db) {
  */
 
 	//usado (Details-getData)
-	app.get('/consultation/:id', (req, res) => {
+	app.get('/getConsultationById/:id', (req, res) => {
 		var consId = req.params.id;
 		db.collection('consdata', function(err, collection) {
 			collection.find({
@@ -76,14 +76,14 @@ module.exports = function(app, db) {
 
 
 /**
- * @api {delete} /consultation/:id Delete consultation by Id
+ * @api {delete} /deleteConsultationById/:id Delete consultation by Id
  * @apiGroup Consultations
  * @apiParam {String} id Consultation's id.
  * @apiSuccess {String} Success Consultation Deleted
  * @apiDescription Delete Consultation by Id (Used on CreateConsultations._onDelete())
  */
 
-app.delete('/consultation/:id', (req, res) => {
+app.delete('/deleteConsultationById/:id', (req, res) => {
 	var consToDelete = req.params.id;
 	var ObjectId = require('mongodb').ObjectId;
 	var oConsToDelete =  ObjectId(consToDelete);
@@ -113,7 +113,10 @@ app.delete('/consultation/:id', (req, res) => {
 	});
 	
 
-	app.put('/consultation/:id', (req, res) => {
+
+
+	//FAZER CENA DA APIDOC
+	app.put('/UpdateConsultationById/:id', (req, res) => {
 		var consToEdit = req.params.id;
 		var ObjectId = require('mongodb').ObjectId;
 		var oconsToEdit =  ObjectId(consToEdit);

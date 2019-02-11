@@ -22,7 +22,7 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/lastDoctor" ,
+			url: "/getLastDoctor" ,
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -55,7 +55,7 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 
 		var aData = jQuery.ajax({
 			type: "POST",
-			url: "/doctor",
+			url: "/PostNewDoctor",
 			dataType: "json",
 			data: docData,
 			async: false,

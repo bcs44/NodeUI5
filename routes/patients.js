@@ -12,7 +12,7 @@ module.exports = function(app, db) {
 
 
 /**
- * @api {post} /patient Insert a new Patient
+ * @api {post} /PostnewPatient Insert a new Patient
  * @apiGroup Patients
  * 
  * 
@@ -32,11 +32,8 @@ module.exports = function(app, db) {
  * 
  */
 
-
-
-
 	//USADO  (LadingPage - handleOperationBtncreate)
-	app.post('/patient', (req, res) => {
+	app.post('PostnewPatient', (req, res) => {
 		var pat = req.body;
 		db.collection('patdata', function(err, collection) {
 			collection.insert(pat, {
@@ -56,7 +53,7 @@ module.exports = function(app, db) {
 
 
 /**
- * @api {put} /patient/:id Modify a Patient by Id
+ * @api {put} /UpdatePatientById/:id Modify a Patient by Id
  * @apiGroup Patients
  * 
  * 
@@ -78,12 +75,8 @@ module.exports = function(app, db) {
  * @apiDescription Modify a Patient by Id (Used on LadingPage.handlebtn_Save())
  * 
  */
-
-
-
-
 	//usado (LadingPage - handlebtn_Save)
-	app.put('/patient/:id', (req, res) => {
+	app.put('/UpdatePatientById/:id', (req, res) => {
 		var id = req.params.id;
 		var pat = req.body;
 		db.collection('patdata', function(err, collection) {
@@ -103,7 +96,7 @@ module.exports = function(app, db) {
 	});
 
 /**
- * @api {get} /patient/:id Get a Patient by Id
+ * @api {get} /getPatientById/:id Get a Patient by Id
  * @apiName patient
  * @apiGroup Patients
  *
@@ -121,7 +114,7 @@ module.exports = function(app, db) {
 
 
 	//usado  (LadingPage - handleSearch)
-	app.get('/patient/:id', (req, res) => {
+	app.get('/getPatientById/:id', (req, res) => {
 		var patId = req.params.id;
 		db.collection('patdata', function(err, collection) {
 			collection.find({
@@ -143,7 +136,7 @@ module.exports = function(app, db) {
  */
 
 	//USADO (LadingPage - handlebtn_Delete)
-	app.delete('/patient/:id', (req, res) => {
+	app.delete('/DeletePatientById/:id', (req, res) => {
 		var patToDelete = req.params.id;
 		db.collection('patdata', function(err, collection) {
 			collection.remove({
@@ -160,7 +153,7 @@ module.exports = function(app, db) {
 
 
 	/**
- * @api {get} /patientByDoctor/:doctor Get Patient by Doctor's Id.
+ * @api {get} /GetPatientByDoctor/:doctor Get Patient by Doctor's Id.
  * @apiName patientByDoctor
  * @apiGroup Patients
  *
@@ -178,7 +171,7 @@ module.exports = function(app, db) {
 
 	//usado  (LadingPage - handleOperationBtncreate, LadingPage - getData, CreateConsultations - _getPatients)
 	//get patiente pelo doctor
-	app.get('/patientByDoctor/:doctor', (req, res) => {
+	app.get('/GetPatientByDoctor/:doctor', (req, res) => {
 		var patDoctor = req.params.doctor;
 		db.collection('patdata', function(err, collection) {
 			collection.find({
@@ -191,8 +184,8 @@ module.exports = function(app, db) {
 	});
 
 	/**
- * @api {get} /lastPatient Get information from the last Patient registered.
- * @apiName lastPatient
+ * @api {get} /GetLastPatient Get information from the last Patient registered.
+ * @apiName GetLastPatient
  * @apiGroup Patients
  *
  * 
@@ -207,7 +200,7 @@ module.exports = function(app, db) {
  */
 
 	//usado  (LadingPage - _getLastId)
-	app.get('/lastPatient', (req, res) => {
+	app.get('/GetLastPatient', (req, res) => {
 		db.collection('patdata', function(err, collection) {
 			collection.find().toArray(function(err, items) {
 				//console.log(items);

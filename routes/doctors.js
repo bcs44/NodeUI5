@@ -1,8 +1,8 @@
 module.exports = function(app, db) {
 
 /**
- * @api {get} /lastDoctor Request last Doctor information
- * @apiName lastDoctor
+ * @api {get} /getLastDoctor Request last Doctor information
+ * @apiName getLastDoctor
  * @apiGroup Doctors
  *
  * @apiDescription Receive information from the last doctor registered for the next one to be registered with the following ID. (Used on RegisterPage._getLastId())
@@ -14,7 +14,7 @@ module.exports = function(app, db) {
  */
 
 	// USADO (RegisterPage-_getLastId)
-	app.get('/lastDoctor', (req, res) => {
+	app.get('/getLastDoctor', (req, res) => {
 		db.collection('docdata', function(err, collection) {
 			collection.find().toArray(function(err, items) {
 				//console.log(items);
@@ -32,8 +32,8 @@ module.exports = function(app, db) {
 
 
 /**
- * @api {post} /doctor Post a new record for a new doctor
- * @apiName doctor
+ * @api {post} /PostNewDoctor Post a new record for a new doctor
+ * @apiName PostNewDoctor
  * @apiGroup Doctors
  *
  * 
@@ -51,7 +51,7 @@ module.exports = function(app, db) {
  */
 
  //USADO (RegisterPage-onRegister)
-	app.post('/doctor', (req, res) => {
+	app.post('/PostNewDoctor', (req, res) => {
 		var doc = req.body;
 		//console.log('Adding Doctor: ' + JSON.stringify(doc));
 		db.collection('docdata', function(err, collection) {
