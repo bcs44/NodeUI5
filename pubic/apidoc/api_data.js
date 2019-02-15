@@ -70,6 +70,50 @@ define({ "api": [
     "name": "PostPostnewconsultation"
   },
   {
+    "type": "put",
+    "url": "/UpdateConsultationById/:id",
+    "title": "Modify a Consultation by Id",
+    "group": "Consultations",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Consultation's Id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "   {\n     \"_id\": \"5c504711fadf3e2ac4fee135\",\n     \"idPat\": \"1\"\n     \"namePat\": \"Bruna\",\n     \"speciality\": \"Cardiology\"\n     \"time\": \"13:44:56\",\n     \"date\": \"01/02/2019\"\n\t\t\"observations\": \"Ending the medication for blood pressure\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>Consultation Modified</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Modify a Patient by Id (Used on LadingPage.handlebtn_Save())</p>",
+    "version": "0.0.0",
+    "filename": "./routes/consultations.js",
+    "groupTitle": "Consultations",
+    "name": "PutUpdateconsultationbyidId"
+  },
+  {
     "type": "get",
     "url": "/getConsultationById/:id",
     "title": "Get a consultation by Id",
@@ -133,6 +177,43 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/consultations.js",
     "groupTitle": "Consultations"
+  },
+  {
+    "type": "delete",
+    "url": "/DeleteDoctorById/:id",
+    "title": "Delete Doctor by Id",
+    "group": "Doctors",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Doctor's id.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>Doctor Deleted</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Delete Doctor by Id (Used on RegisterPage.onDelete())</p>",
+    "version": "0.0.0",
+    "filename": "./routes/doctors.js",
+    "groupTitle": "Doctors",
+    "name": "DeleteDeletedoctorbyidId"
   },
   {
     "type": "get",
@@ -200,6 +281,64 @@ define({ "api": [
     "name": "GetDoctorloginEmailPassword"
   },
   {
+    "type": "get",
+    "url": "/GetDoctorById/:id",
+    "title": "Get a Doctor by Id",
+    "group": "Doctors",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Doctor's Id</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Get a Doctor by Id (Used on LadingPage.handleSearch())</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Doctor's ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Doctor's Name</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Doctor's Password</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Doctor's Email</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./routes/doctors.js",
+    "groupTitle": "Doctors",
+    "name": "GetGetdoctorbyidId"
+  },
+  {
     "type": "post",
     "url": "/PostNewDoctor",
     "title": "Post a new record for a new doctor",
@@ -231,6 +370,50 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/doctors.js",
     "groupTitle": "Doctors"
+  },
+  {
+    "type": "put",
+    "url": "/UpdateDoctorById/:id",
+    "title": "Modify a Doctor by Id",
+    "group": "Doctors",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Doctor's Id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "   {\n     \"id\": \"1\"\n\t\t\"name\": \"Manuel\"\n\t\t\"password\": \"pass\"\n\t\t\"email\": \"manuel@email.com\"\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>Doctor Modified</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Modify a Doctor by Id (Used on RegisterPage.onEdit())</p>",
+    "version": "0.0.0",
+    "filename": "./routes/doctors.js",
+    "groupTitle": "Doctors",
+    "name": "PutUpdatedoctorbyidId"
   },
   {
     "type": "get",
