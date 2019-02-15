@@ -76,6 +76,7 @@
 		</content>
 		<footer>
 			<Toolbar>
+				<Button press="onEditDoctor" icon="sap-icon://bullet-text" text="Edit Your Data" type="Emphasized" class="sapUiSmallMarginEnd"/>
 				<ToolbarSpacer></ToolbarSpacer>
 				<Button press="onCreateConsultations" icon="sap-icon://add" text="Consultations" type="Emphasized" class="sapUiSmallMarginEnd"/>
 			</Toolbar>

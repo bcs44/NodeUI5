@@ -1,4 +1,4 @@
-module.exports = function(app, db) {
+module.exports = function (app, db) {
 
 	/**
 	 * @api {post} /PostnewPatient Insert a new Patient
@@ -23,10 +23,10 @@ module.exports = function(app, db) {
 
 	app.post('PostnewPatient', (req, res) => {
 		var pat = req.body;
-		db.collection('patdata', function(err, collection) {
+		db.collection('patdata', function (err, collection) {
 			collection.insert(pat, {
 				safe: true
-			}, function(err, result) {
+			}, function (err, result) {
 				if (err) {
 					res.send({
 						'error': 'An error has occurred'
@@ -65,10 +65,10 @@ module.exports = function(app, db) {
 	app.put('/UpdatePatientById/:id', (req, res) => {
 		var id = req.params.id;
 		var pat = req.body;
-		db.collection('patdata', function(err, collection) {
+		db.collection('patdata', function (err, collection) {
 			collection.update({
 				'id': id
-			}, pat, function(err, result) {
+			}, pat, function (err, result) {
 				if (err) {
 					res.send({
 						'error': 'An error has occurred'
@@ -100,10 +100,10 @@ module.exports = function(app, db) {
 
 	app.get('/getPatientById/:id', (req, res) => {
 		var patId = req.params.id;
-		db.collection('patdata', function(err, collection) {
+		db.collection('patdata', function (err, collection) {
 			collection.find({
 				id: patId
-			}).toArray(function(err, items) {
+			}).toArray(function (err, items) {
 				res.send(items);
 			});
 
@@ -120,15 +120,15 @@ module.exports = function(app, db) {
 
 	app.delete('/DeletePatientById/:id', (req, res) => {
 		var patToDelete = req.params.id;
-		db.collection('patdata', function(err, collection) {
+		db.collection('patdata', function (err, collection) {
 			collection.remove({
 				'id': patToDelete
-			}, function(err) {
+			}, function (err) {
 				res.send((err === null) ? {
 					msg: ''
 				} : {
-					msg: 'error: ' + err
-				});
+						msg: 'error: ' + err
+					});
 			})
 		})
 	});
@@ -152,10 +152,10 @@ module.exports = function(app, db) {
 
 	app.get('/GetPatientByDoctor/:doctor', (req, res) => {
 		var patDoctor = req.params.doctor;
-		db.collection('patdata', function(err, collection) {
+		db.collection('patdata', function (err, collection) {
 			collection.find({
 				doctor: patDoctor
-			}).toArray(function(err, items) {
+			}).toArray(function (err, items) {
 				res.send(items);
 			});
 
@@ -179,8 +179,8 @@ module.exports = function(app, db) {
 	 */
 
 	app.get('/GetLastPatient', (req, res) => {
-		db.collection('patdata', function(err, collection) {
-			collection.find().toArray(function(err, items) {
+		db.collection('patdata', function (err, collection) {
+			collection.find().toArray(function (err, items) {
 				//console.log(items);
 				var x = 0;
 				for (var i = 0; i < items.length; i++) {

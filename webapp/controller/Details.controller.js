@@ -1,13 +1,13 @@
 sap.ui.controller("com.bsilva.app.controller.Details", {
 
-	onInit: function() {
+	onInit: function () {
 
 		that = this;
 		that.getOwnerComponent().getRouter().getRoute("Details").attachPatternMatched(that._onObjectMatched, that);
 
 	},
 
-	_onObjectMatched: function(evt) {
+	_onObjectMatched: function (evt) {
 
 		that._id = evt.getParameter("arguments").Id;
 		that._idDoctor = evt.getParameter("arguments").idDoctor;
@@ -15,7 +15,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	},
 
-	getData: function(_id) {
+	getData: function (_id) {
 
 		var oModel = new sap.ui.model.json.JSONModel();
 
@@ -25,7 +25,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			url: "/getConsultationById/" + _id,
 			dataType: "json",
 			async: false,
-			success: function(data, textStatus, jqXHR) {
+			success: function (data, textStatus, jqXHR) {
 				oModel.setData({
 					modelData: data
 				});
@@ -40,7 +40,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	},
 
-	onNavButtonPress: function() {
+	onNavButtonPress: function () {
 		var oAuth = that.getOwnerComponent().getModel("login");
 		var name = oAuth.getData()[0].name;
 
@@ -51,7 +51,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			});
 	},
 
-	onDeleteConsultation: function(e) {
+	onDeleteConsultation: function (e) {
 
 		var _sPath = e.getSource().getParent().getBindingContext().sPath;
 		var oObject = e.getSource().getModel().getProperty(_sPath);
@@ -66,12 +66,12 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 				}),
 				beginButton: new sap.m.Button({
 					text: 'OK',
-					press: function() {
+					press: function () {
 						that._onDelete(that._idToDelete);
 						that._warningDialog.close();
 					}
 				}),
-				afterClose: function() {
+				afterClose: function () {
 					//that._warningDialog.destroy();
 				}
 			});
@@ -81,13 +81,13 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	},
 
-	_onDelete: function(id) {
+	_onDelete: function (id) {
 
 		jQuery.ajax({
 			url: "/deleteConsultationById/" + id,
 			type: "DELETE",
 			dataType: "json",
-			success: function(response, status) {
+			success: function (response, status) {
 
 			}
 		});
@@ -96,7 +96,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	},
 
-	onEditConsultations: function(e) {
+	onEditConsultations: function (e) {
 		var _sPath = e.getSource().getParent().getBindingContext().sPath;
 		var oObject = e.getSource().getModel().getProperty(_sPath);
 
@@ -165,8 +165,8 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			layout: "ResponsiveGridLayout",
 			width: "100%",
 			content: [new sap.ui.core.Title({
-					text: "Update/Delete Consultation Data"
-				}),
+				text: "Update/Delete Consultation Data"
+			}),
 				lb_PatId, ip_PatId, lb_PatName, ip_PatName, lb_Time, ip_Time, lb_Date, ip_Date, lb_Spec, ip_Spec, lb_Obs, ip_Obs
 
 			]
@@ -180,14 +180,14 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			content: [Cons_Form],
 			beginButton: new sap.m.Button({
 				text: 'Update',
-				press: function() {
+				press: function () {
 					that.handlebtn_Save()
 					that._EditDialog.close();
 				}
 			}),
 			endButton: new sap.m.Button({
 				text: 'Cancel',
-				press: function() {
+				press: function () {
 					that._EditDialog.close();
 				}
 			})
@@ -199,7 +199,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	},
 
-	handlebtn_Save: function() {
+	handlebtn_Save: function () {
 
 		var consData = that._EditDialog.getModel("editConsModel").getData();;
 		var url = "/UpdateConsultationById/" + consData._id;
@@ -209,7 +209,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			type: "PUT",
 			dataType: "json",
 			data: consData,
-			success: function(response, status) {
+			success: function (response, status) {
 				//console.log(response);
 			}
 		});

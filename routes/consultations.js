@@ -1,4 +1,4 @@
-module.exports = function(app, db) {
+module.exports = function (app, db) {
 
 	/**
 	 * @api {post} /PostNewConsultation Insert a new Consultation
@@ -22,10 +22,10 @@ module.exports = function(app, db) {
 
 	app.post('/PostNewConsultation', (req, res) => {
 		var cons = req.body;
-		db.collection('consdata', function(err, collection) {
+		db.collection('consdata', function (err, collection) {
 			collection.insert(cons, {
 				safe: true
-			}, function(err, result) {
+			}, function (err, result) {
 				if (err) {
 					res.send({
 						'error': 'An error has occurred'
@@ -56,10 +56,10 @@ module.exports = function(app, db) {
 
 	app.get('/getConsultationById/:id', (req, res) => {
 		var consId = req.params.id;
-		db.collection('consdata', function(err, collection) {
+		db.collection('consdata', function (err, collection) {
 			collection.find({
 				idPat: consId
-			}).toArray(function(err, items) {
+			}).toArray(function (err, items) {
 				res.send(items);
 			});
 
@@ -78,20 +78,46 @@ module.exports = function(app, db) {
 		var consToDelete = req.params.id;
 		var ObjectId = require('mongodb').ObjectId;
 		var oConsToDelete = ObjectId(consToDelete);
-		db.collection('consdata', function(err, collection) {
+		db.collection('consdata', function (err, collection) {
 			collection.remove({
 				'_id': oConsToDelete
-			}, function(err) {
+			}, function (err) {
 				res.send((err === null) ? {
 					msg: ''
 				} : {
-					msg: 'error: ' + err
-				});
+						msg: 'error: ' + err
+					});
 			})
 		})
 	});
 
-	//TODO - FAZER CENA DA APIDOC
+
+	/**
+ * @api {put} /UpdateConsultationById/:id Modify a Consultation by Id
+ * @apiGroup Consultations
+ * 
+ * 
+ * @apiParam {String} id Consultation's Id
+ * 
+ * @apiParamExample {json} Input
+ *    {
+ *      "_id": "5c504711fadf3e2ac4fee135",
+ *      "idPat": "1"
+ *      "namePat": "Bruna",
+ *      "speciality": "Cardiology"
+ *      "time": "13:44:56",
+ *      "date": "01/02/2019"
+ * 		"observations": "Ending the medication for blood pressure"
+ *    }
+ *
+ * @apiSuccess {String} Success Consultation Modified
+ * 
+ * 
+ * @apiDescription Modify a Patient by Id (Used on LadingPage.handlebtn_Save())
+ * 
+ */
+
+
 	app.put('/UpdateConsultationById/:id', (req, res) => {
 		var consToEdit = req.params.id;
 		var ObjectId = require('mongodb').ObjectId;
@@ -99,10 +125,10 @@ module.exports = function(app, db) {
 		console.log(oconsToEdit);
 		var cons = req.body;
 		console.log(cons);
-		db.collection('consdata', function(err, collection) {
+		db.collection('consdata', function (err, collection) {
 			collection.update({
 				'_id': oconsToEdit
-			}, cons, function(err, result) {
+			}, cons, function (err, result) {
 				if (err) {
 					res.send({
 						'error': 'An error has occurred'

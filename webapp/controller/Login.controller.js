@@ -1,10 +1,10 @@
 sap.ui.controller("com.bsilva.app.controller.Login", {
 
-	onInit: function() {
+	onInit: function () {
 		that = this;
 	},
 
-	onLogin: function() {
+	onLogin: function () {
 
 		var oAuth = that.getOwnerComponent().getModel("login");
 		oAuth.refresh(false);
@@ -18,7 +18,7 @@ sap.ui.controller("com.bsilva.app.controller.Login", {
 			url: "/doctorLogin/" + docData.email + "/" + docData.password,
 			dataType: "json",
 			async: false,
-			success: function(data, textStatus, jqXHR) {
+			success: function (data, textStatus, jqXHR) {
 				x = data;
 				if (x.length > 0) {
 					that.getOwnerComponent().getRouter()
@@ -36,9 +36,12 @@ sap.ui.controller("com.bsilva.app.controller.Login", {
 
 	},
 
-	onRegister: function() {
+	onRegister: function () {
 		that.getOwnerComponent().getRouter()
-			.navTo("RegisterPage");
+			.navTo("RegisterPage", {
+				"edit": "false",
+				"idDoctor": "null"
+			});
 	}
 
 });

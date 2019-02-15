@@ -103,7 +103,7 @@
 				]
 			}, {
 				"name": "RegisterPage",
-				"pattern": "RegisterPage",
+				"pattern": "RegisterPage/{edit}/{idDoctor}",
 				"greedy": false,
 				"target": [
 					"RegisterPage"

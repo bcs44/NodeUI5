@@ -4,22 +4,26 @@
 		<content>
 			<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
 				<Label id="lbr_id" text="ID:" labelFor="ipr_id"></Label>
-				<Input id="ipr_id" value="{newDoctor>/id}" enabled="false"/>
+				<Input id="ipr_id" value="{DoctorModel>/id}" enabled="false"/>
 			</VBox>
 			<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
 				<Label id="lbr_name" text="Name:" labelFor="ipr_name"></Label>
-				<Input id="ipr_name" value="{newDoctor>/name}"/>
+				<Input id="ipr_name" value="{DoctorModel>/name}"/>
 			</VBox>
 			<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
 				<Label id="lbr_password" text="Password:" labelFor="ipr_password"></Label>
-				<Input id="ipr_password" value="{newDoctor>/password}" type="Password"/>
+				<Input id="ipr_password" value="{DoctorModel>/password}" type="Password"/>
 			</VBox>
 			<VBox alignItems="Center" class="sapUiLargeMarginTop" justifyContent="Center">
 				<Label id="lbr_email" text="E-mail:" labelFor="ipr_email"></Label>
-				<Input id="ipr_email" value="{newDoctor>/email}" enabled="true" type="Email"/>
+				<Input id="ipr_email" value="{DoctorModel>/email}" enabled="true" type="Email"/>
 			</VBox>
 			<HBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
-				<Button press="onRegister" text="Register"/>
+				<Button id="_buttonRegister" press="onRegister" text="Register" visible="false"/>
+			</HBox>
+			<HBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+				<Button id="_buttonDelete" press="onDelete" text="Delete" visible="false"/>
+				<Button id="_buttonEdit" press="onEdit" text="Edit" visible="false"/>
 			</HBox>
 		</content>
 	</Page>

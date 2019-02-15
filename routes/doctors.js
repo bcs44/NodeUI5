@@ -1,4 +1,4 @@
-module.exports = function(app, db) {
+module.exports = function (app, db) {
 
 	/**
 	 * @api {get} /getLastDoctor Request last Doctor information
@@ -14,8 +14,8 @@ module.exports = function(app, db) {
 	 */
 
 	app.get('/getLastDoctor', (req, res) => {
-		db.collection('docdata', function(err, collection) {
-			collection.find().toArray(function(err, items) {
+		db.collection('docdata', function (err, collection) {
+			collection.find().toArray(function (err, items) {
 				//console.log(items);
 				var x = 0;
 				for (var i = 0; i < items.length; i++) {
@@ -51,10 +51,10 @@ module.exports = function(app, db) {
 	app.post('/PostNewDoctor', (req, res) => {
 		var doc = req.body;
 		//console.log('Adding Doctor: ' + JSON.stringify(doc));
-		db.collection('docdata', function(err, collection) {
+		db.collection('docdata', function (err, collection) {
 			collection.insert(doc, {
 				safe: true
-			}, function(err, result) {
+			}, function (err, result) {
 				if (err) {
 					res.send({
 						'error': 'An error has occurred'
@@ -89,39 +89,72 @@ module.exports = function(app, db) {
 			password: req.params.password
 		};
 
-		db.collection('docdata').find(myquery).toArray(function(err, items) {
+		db.collection('docdata').find(myquery).toArray(function (err, items) {
 			res.send(items);
 
 		})
 	});
 
-	//TODO - tratar do delete do dotor!!!!!
-	app.delete('/doctor/:id', (req, res) => {
+	/**
+	 * @api {delete} /DeleteDoctorById/:id Delete Doctor by Id
+	 * @apiGroup Doctors
+	 * @apiParam {String} id Doctor's id.
+	 * @apiSuccess {String} Success Doctor Deleted
+	 * @apiDescription Delete Doctor by Id (Used on RegisterPage.onDelete())
+	 */
+
+
+	app.delete('/DeleteDoctorById/:id', (req, res) => {
 		var docToDelete = req.params.id;
-		db.collection('docdata', function(err, collection) {
+		console.log(docToDelete);
+		db.collection('docdata', function (err, collection) {
 			collection.remove({
 				'id': docToDelete
-			}, function(err) {
+			}, function (err) {
 				res.send((err === null) ? {
 					msg: ''
 				} : {
-					msg: 'error: ' + err
-				});
+						msg: 'error: ' + err
+					});
 			})
 		})
 	});
 
-	//TODO - Tratar da edição do doutor!!!
-	app.put('/doctor/:id', (req, res) => {
+
+	/**
+	 * @api {put} /UpdateDoctorById/:id Modify a Doctor by Id
+	 * @apiGroup Doctors
+	 * 
+	 * 
+	 * @apiParam {String} id Doctor's Id
+	 * 
+	 * @apiParamExample {json} Input
+	 *    {
+	 *      "id": "1"
+	 *		"name": "Manuel"
+	 *		"password": "pass"
+	 *		"email": "manuel@email.com"
+	 *    }
+	 *
+	 * @apiSuccess {String} Success Doctor Modified
+	 * 
+	 * 
+	 * @apiDescription Modify a Doctor by Id (Used on RegisterPage.onEdit())
+	 * 
+	 */
+
+	app.put('/UpdateDoctorById/:id', (req, res) => {
 		var id = req.params.id;
 		var doc = req.body;
-		db.collection('docdata', function(err, collection) {
+		console.log(id);
+		console.log(doc);
+		db.collection('docdata', function (err, collection) {
 			collection.update({
 				'id': id
-			}, doc, function(err, result) {
+			}, doc, function (err, result) {
 				if (err) {
 					res.send({
-						'error': 'An error has occurred'
+						'error': err
 					});
 				} else {
 					//console.log('Success: ' + JSON.stringify(result[0]));
@@ -129,6 +162,35 @@ module.exports = function(app, db) {
 				}
 			});
 		});
+	});
+
+
+	/**
+	 * @api {get} /GetDoctorById/:id Get a Doctor by Id
+	 * @apiGroup Doctors
+	 *
+	 * @apiParam {String} id Doctor's Id
+	 *  
+	 * @apiDescription Get a Doctor by Id (Used on LadingPage.handleSearch())
+	 *
+	 * @apiSuccess  {String} id Doctor's ID
+	 * @apiSuccess  {String} name Doctor's Name
+	 * @apiSuccess  {String} password Doctor's Password
+	 * @apiSuccess  {String} email Doctor's Email
+	 * 
+	 */
+
+	app.get('/GetDoctorById/:id', (req, res) => {
+		console.log("entrou");
+		var docId = req.params.id;
+		db.collection('docdata', function (err, collection) {
+			collection.find({
+				id: docId
+			}).toArray(function (err, items) {
+				res.send(items);
+			});
+
+		})
 	});
 
 }
