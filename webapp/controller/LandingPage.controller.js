@@ -10,14 +10,13 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 
 		var _name = evt.getParameter("arguments").Name;
 		that._idDoctor = evt.getParameter("arguments").Id;
-		sap.ui.getCore().byId(that.getView().sId +  "--idPage").setTitle("Doctor " + _name);
+		sap.ui.getCore().byId(that.getView().sId + "--idPage").setTitle("Doctor " + _name);
 		that._createModels();
 		that.getData(that._idDoctor);
-		
 
 	},
 
-	_createModels: function(){
+	_createModels: function() {
 
 		var newPatient = new sap.ui.model.json.JSONModel();
 		newPatient.setDefaultBindingMode("TwoWay");
@@ -37,13 +36,13 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		that.getView().setModel(editPatient, "editPatient");
 	},
 
-	_getLastId: function(){
+	_getLastId: function() {
 
 		var patdata;
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/GetLastPatient" ,
+			url: "/GetLastPatient",
 			dataType: "json",
 			async: false,
 			success: function(data, textStatus, jqXHR) {
@@ -54,9 +53,9 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		console.log(patdata);
 
 		var newPatient = that.getView().getModel("newPatient");
-		
+
 		newPatient.setData({
-			id:  parseInt(patdata.id) + 1
+			id: parseInt(patdata.id) + 1
 		});
 
 	},
@@ -91,7 +90,6 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var oNewPatient = that.getView().getModel("newPatient");
 		oNewPatient.refresh(false);
 
-
 		var patData = {
 			"designation": oNewPatient.getData().designation,
 			"dob": oNewPatient.getData().dob,
@@ -100,7 +98,6 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 			"name": oNewPatient.getData().name,
 			"doctor": that._idDoctor
 		};
-	
 
 		var aData = jQuery.ajax({
 			type: "POST",
@@ -147,24 +144,6 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 			}
 		});
 
-	/*	var oModel = new sap.ui.model.json.JSONModel();
-		var aData = jQuery.ajax({
-			type: "GET",
-			contentType: "application/json",
-			url: "/patients",
-			dataType: "json",
-			async: false,
-			success: function(data, textStatus, jqXHR) {
-				oModel.setData({
-					modelData: data
-				});
-			}
-		});
-		sap.ui.getCore().setModel(oModel, 'model_table');
-		var oTable = sap.ui.getCore().byId(that.getView().sId + "--tbl_odata");
-		oTable.setModel(oModel);
-		oTable.bindRows("/modelData");
-		that._Dialog.close();*/
 		that.getData(that._idDoctor);
 
 		that._Dialog.close();
@@ -186,23 +165,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 				//console.log(response);
 			}
 		});
-	/*	var oModel = new sap.ui.model.json.JSONModel();
-		var aData = jQuery.ajax({
-			type: "GET",
-			contentType: "application/json",
-			url: "/patients",
-			dataType: "json",
-			async: false,
-			success: function(data, textStatus, jqXHR) {
-				oModel.setData({
-					modelData: data
-				});
-			}
-		});
-		sap.ui.getCore().setModel(oModel, 'model_table');
-		var oTable = sap.ui.getCore().byId(that.getView().sId + "--tbl_odata");
-		oTable.setModel(oModel);
-		oTable.bindRows("/modelData");*/
+
 		that.getData(that._idDoctor);
 		that._Dialog.close();
 	},
@@ -334,20 +297,6 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 			}
 		});
 
-
-		/*var aData = jQuery.ajax({
-			type: "GET",
-			contentType: "application/json",
-			url: "/patients",
-			dataType: "json",
-			async: false,
-			success: function(data, textStatus, jqXHR) {
-				oModel.setData({
-					modelData: data
-				});
-			}
-		});*/
-
 		sap.ui.getCore().setModel(oModel, 'model_table');
 		var oTable = sap.ui.getCore().byId(that.getView().sId + "--tbl_odata");
 		oTable.setModel(oModel);
@@ -371,8 +320,8 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 
 	onCreateConsultations: function() {
 		that.getOwnerComponent().getRouter()
-			.navTo("CreateConsultations",{
-				"idDoctor" : that._idDoctor
+			.navTo("CreateConsultations", {
+				"idDoctor": that._idDoctor
 			});
 	},
 

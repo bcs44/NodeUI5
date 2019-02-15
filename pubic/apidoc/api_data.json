@@ -1,7 +1,44 @@
 [
   {
+    "type": "delete",
+    "url": "/deleteConsultationById/:id",
+    "title": "Delete consultation by Id",
+    "group": "Consultations",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Consultation's id.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>Consultation Deleted</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Delete Consultation by Id (Used on CreateConsultations._onDelete())</p>",
+    "version": "0.0.0",
+    "filename": "./routes/consultations.js",
+    "groupTitle": "Consultations",
+    "name": "DeleteDeleteconsultationbyidId"
+  },
+  {
     "type": "post",
-    "url": "/consultation",
+    "url": "/PostNewConsultation",
     "title": "Insert a new Consultation",
     "group": "Consultations",
     "parameter": {
@@ -30,11 +67,11 @@
     "version": "0.0.0",
     "filename": "./routes/consultations.js",
     "groupTitle": "Consultations",
-    "name": "PostConsultation"
+    "name": "PostPostnewconsultation"
   },
   {
     "type": "get",
-    "url": "/consultation/:id",
+    "url": "/getConsultationById/:id",
     "title": "Get a consultation by Id",
     "name": "consultation",
     "group": "Consultations",
@@ -164,9 +201,9 @@
   },
   {
     "type": "post",
-    "url": "/doctor",
+    "url": "/PostNewDoctor",
     "title": "Post a new record for a new doctor",
-    "name": "doctor",
+    "name": "PostNewDoctor",
     "group": "Doctors",
     "parameter": {
       "examples": [
@@ -197,9 +234,9 @@
   },
   {
     "type": "get",
-    "url": "/lastDoctor",
+    "url": "/getLastDoctor",
     "title": "Request last Doctor information",
-    "name": "lastDoctor",
+    "name": "getLastDoctor",
     "group": "Doctors",
     "description": "<p>Receive information from the last doctor registered for the next one to be registered with the following ID. (Used on RegisterPage._getLastId())</p>",
     "success": {
@@ -278,87 +315,10 @@
     "name": "DeletePatientId"
   },
   {
-    "type": "post",
-    "url": "/patient",
-    "title": "Insert a new Patient",
-    "group": "Patients",
-    "parameter": {
-      "examples": [
-        {
-          "title": "Input",
-          "content": "{\n  \"id\": \"2\",\n  \"name\": Bruna\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "Success",
-            "description": "<p>Inserted new Patient</p>"
-          }
-        ]
-      }
-    },
-    "description": "<p>Insert a new Patient (Used on LadingPage.handleOperationBtncreate())</p>",
-    "version": "0.0.0",
-    "filename": "./routes/patients.js",
-    "groupTitle": "Patients",
-    "name": "PostPatient"
-  },
-  {
-    "type": "put",
-    "url": "/patient/:id",
-    "title": "Modify a Patient by Id",
-    "group": "Patients",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Patients's Id</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Input",
-          "content": "{\n  \"id\": \"2\",\n  \"name\": Bruna\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "Success",
-            "description": "<p>Patient Modified</p>"
-          }
-        ]
-      }
-    },
-    "description": "<p>Modify a Patient by Id (Used on LadingPage.handlebtn_Save())</p>",
-    "version": "0.0.0",
-    "filename": "./routes/patients.js",
-    "groupTitle": "Patients",
-    "name": "PutPatientId"
-  },
-  {
     "type": "get",
-    "url": "/lastPatient",
+    "url": "/GetLastPatient",
     "title": "Get information from the last Patient registered.",
-    "name": "lastPatient",
+    "name": "GetLastPatient",
     "group": "Patients",
     "description": "<p>Receive information from the last Patient registered for the next one to be registered with the following ID. (Used on LadingPage._getLastId())</p>",
     "success": {
@@ -414,8 +374,85 @@
     "groupTitle": "Patients"
   },
   {
+    "type": "post",
+    "url": "/PostnewPatient",
+    "title": "Insert a new Patient",
+    "group": "Patients",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"id\": \"2\",\n  \"name\": Bruna\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>Inserted new Patient</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Insert a new Patient (Used on LadingPage.handleOperationBtncreate())</p>",
+    "version": "0.0.0",
+    "filename": "./routes/patients.js",
+    "groupTitle": "Patients",
+    "name": "PostPostnewpatient"
+  },
+  {
+    "type": "put",
+    "url": "/UpdatePatientById/:id",
+    "title": "Modify a Patient by Id",
+    "group": "Patients",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Patients's Id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Input",
+          "content": "{\n  \"id\": \"2\",\n  \"name\": Bruna\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Success",
+            "description": "<p>Patient Modified</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Modify a Patient by Id (Used on LadingPage.handlebtn_Save())</p>",
+    "version": "0.0.0",
+    "filename": "./routes/patients.js",
+    "groupTitle": "Patients",
+    "name": "PutUpdatepatientbyidId"
+  },
+  {
     "type": "get",
-    "url": "/patient/:id",
+    "url": "/getPatientById/:id",
     "title": "Get a Patient by Id",
     "name": "patient",
     "group": "Patients",
@@ -487,7 +524,7 @@
   },
   {
     "type": "get",
-    "url": "/patientByDoctor/:doctor",
+    "url": "/GetPatientByDoctor/:doctor",
     "title": "Get Patient by Doctor's Id.",
     "name": "patientByDoctor",
     "group": "Patients",

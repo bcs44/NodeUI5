@@ -10,13 +10,12 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 	_onObjectMatched: function(evt) {
 
 		that._idDoctor = evt.getParameter("arguments").idDoctor;
-		
+
 		var newConsultation = new sap.ui.model.json.JSONModel();
 		newConsultation.setDefaultBindingMode("TwoWay");
 		that.getView().setModel(newConsultation, "newConsultation");
 
 		that._getPatients(that._idDoctor);
-		
 
 	},
 
@@ -75,8 +74,6 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 				}
 			});
 		}
-
-
 
 		var newConsultation = that.getView().getModel("newConsultation");
 

@@ -2,7 +2,7 @@
 	displayBlock="true" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
 	<Page title="Register" navButtonPress="onNavButtonPress" showNavButton="true">
 		<content>
-		<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
+			<VBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
 				<Label id="lbr_id" text="ID:" labelFor="ipr_id"></Label>
 				<Input id="ipr_id" value="{newDoctor>/id}" enabled="false"/>
 			</VBox>

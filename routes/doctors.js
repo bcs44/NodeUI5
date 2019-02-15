@@ -1,26 +1,25 @@
 module.exports = function(app, db) {
 
-/**
- * @api {get} /getLastDoctor Request last Doctor information
- * @apiName getLastDoctor
- * @apiGroup Doctors
- *
- * @apiDescription Receive information from the last doctor registered for the next one to be registered with the following ID. (Used on RegisterPage._getLastId())
- *
- * @apiSuccess {String}  id  Id of the last registered doctor found.
- * @apiSuccess {String}  name  Name of the last registered doctor found.
- * @apiSuccess {String}  password  Password of the last registered doctor found.
- * @apiSuccess {String}  email  Email of the last registered doctor found.
- */
+	/**
+	 * @api {get} /getLastDoctor Request last Doctor information
+	 * @apiName getLastDoctor
+	 * @apiGroup Doctors
+	 *
+	 * @apiDescription Receive information from the last doctor registered for the next one to be registered with the following ID. (Used on RegisterPage._getLastId())
+	 *
+	 * @apiSuccess {String}  id  Id of the last registered doctor found.
+	 * @apiSuccess {String}  name  Name of the last registered doctor found.
+	 * @apiSuccess {String}  password  Password of the last registered doctor found.
+	 * @apiSuccess {String}  email  Email of the last registered doctor found.
+	 */
 
-	// USADO (RegisterPage-_getLastId)
 	app.get('/getLastDoctor', (req, res) => {
 		db.collection('docdata', function(err, collection) {
 			collection.find().toArray(function(err, items) {
 				//console.log(items);
 				var x = 0;
-				for(var  i =0; i< items.length; i++){
-					if(items[i].id > x ){
+				for (var i = 0; i < items.length; i++) {
+					if (items[i].id > x) {
 						x = items[i].id;
 						var items2 = items[i];
 					}
@@ -30,27 +29,25 @@ module.exports = function(app, db) {
 		});
 	});
 
+	/**
+	 * @api {post} /PostNewDoctor Post a new record for a new doctor
+	 * @apiName PostNewDoctor
+	 * @apiGroup Doctors
+	 *
+	 * 
+	 * @apiParamExample {json} Input
+	 *    {
+	 *      "id": "2",
+	 *      "name": Joaquim
+	 *      "password": "password",
+	 *      "email": "joaquim@mail.com"
+	 *    }
+	 * 
+	 * @apiDescription Post a new record for a new doctor (Used on RegisterPage.onRegister())
+	 *
+	 * @apiSuccess {String}  success  New Doctor Inserted
+	 */
 
-/**
- * @api {post} /PostNewDoctor Post a new record for a new doctor
- * @apiName PostNewDoctor
- * @apiGroup Doctors
- *
- * 
- * @apiParamExample {json} Input
- *    {
- *      "id": "2",
- *      "name": Joaquim
- *      "password": "password",
- *      "email": "joaquim@mail.com"
- *    }
- * 
- * @apiDescription Post a new record for a new doctor (Used on RegisterPage.onRegister())
- *
- * @apiSuccess {String}  success  New Doctor Inserted
- */
-
- //USADO (RegisterPage-onRegister)
 	app.post('/PostNewDoctor', (req, res) => {
 		var doc = req.body;
 		//console.log('Adding Doctor: ' + JSON.stringify(doc));
@@ -70,57 +67,35 @@ module.exports = function(app, db) {
 		});
 	});
 
+	/**
+	 * @api {get} /doctorLogin/:email/:password Get Doctor
+	 * @apiGroup Doctors
+	 * 
+	 * @apiParam {String} email Doctor's Email
+	 * @apiParam {String} password Doctor's Password
+	 * 
+	 * @apiSuccess {String} id Doctor's ID
+	 * @apiSuccess {String} name Doctor's Name
+	 * @apiSuccess {String} password Doctor's Password
+	 * @apiSuccess {String} email Doctor's Email
+	 * 
+	 * @apiDescription Log in and sign in to the app (Used on Login.onLogin())
+	 */
 
-
-/**
- * @api {get} /doctorLogin/:email/:password Get Doctor
- * @apiGroup Doctors
- * 
- * @apiParam {String} email Doctor's Email
- * @apiParam {String} password Doctor's Password
- * 
- * @apiSuccess {String} id Doctor's ID
- * @apiSuccess {String} name Doctor's Name
- * @apiSuccess {String} password Doctor's Password
- * @apiSuccess {String} email Doctor's Email
- * 
- * @apiDescription Log in and sign in to the app (Used on Login.onLogin())
- */
-
-
-	//USADO (Login-onLogin)
 	app.get('/doctorLogin/:email/:password', (req, res) => {
 
 		var myquery = {
 			email: req.params.email,
 			password: req.params.password
 		};
-		
+
 		db.collection('docdata').find(myquery).toArray(function(err, items) {
 			res.send(items);
 
 		})
 	});
 
-
-
-
-
-	app.get('/doctor/:id', (req, res) => {
-		var docId = req.params.id;
-		db.collection('docdata', function(err, collection) {
-			collection.find({
-				id: docId
-			}).toArray(function(err, items) {
-				res.send(items);
-			});
-
-		})
-	});
-
-
-	
-
+	//TODO - tratar do delete do dotor!!!!!
 	app.delete('/doctor/:id', (req, res) => {
 		var docToDelete = req.params.id;
 		db.collection('docdata', function(err, collection) {
@@ -136,18 +111,7 @@ module.exports = function(app, db) {
 		})
 	});
 
-
-
-	app.get('/doctors', (req, res) => {
-		db.collection('docdata', function(err, collection) {
-			collection.find().toArray(function(err, items) {
-				//console.log(items);
-				res.send(items);
-			});
-		});
-	});
-
-
+	//TODO - Tratar da edição do doutor!!!
 	app.put('/doctor/:id', (req, res) => {
 		var id = req.params.id;
 		var doc = req.body;
@@ -166,5 +130,5 @@ module.exports = function(app, db) {
 			});
 		});
 	});
-	
+
 }

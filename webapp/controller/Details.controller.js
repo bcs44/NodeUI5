@@ -51,7 +51,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			});
 	},
 
-	onDeleteConsultation: function(e){
+	onDeleteConsultation: function(e) {
 
 		var _sPath = e.getSource().getParent().getBindingContext().sPath;
 		var oObject = e.getSource().getModel().getProperty(_sPath);
@@ -66,7 +66,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 				}),
 				beginButton: new sap.m.Button({
 					text: 'OK',
-					press: function () {
+					press: function() {
 						that._onDelete(that._idToDelete);
 						that._warningDialog.close();
 					}
@@ -81,7 +81,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	},
 
-	_onDelete: function(id){
+	_onDelete: function(id) {
 
 		jQuery.ajax({
 			url: "/deleteConsultationById/" + id,
@@ -92,23 +92,16 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			}
 		});
 
-
-
 		that.getData(that._id);
 
 	},
 
-	onEditConsultations: function(e){
+	onEditConsultations: function(e) {
 		var _sPath = e.getSource().getParent().getBindingContext().sPath;
 		var oObject = e.getSource().getModel().getProperty(_sPath);
 
-
-
 		var editConsModel = new sap.ui.model.json.JSONModel();
 		editConsModel.setData(oObject);
-
-		
-
 
 		var ip_PatId = new sap.m.Input({
 			enabled: true,
@@ -174,50 +167,41 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			content: [new sap.ui.core.Title({
 					text: "Update/Delete Consultation Data"
 				}),
-				lb_PatId, ip_PatId, lb_PatName, ip_PatName, lb_Time, ip_Time, lb_Date, ip_Date, lb_Spec, ip_Spec,  lb_Obs, ip_Obs
+				lb_PatId, ip_PatId, lb_PatName, ip_PatName, lb_Time, ip_Time, lb_Date, ip_Date, lb_Spec, ip_Spec, lb_Obs, ip_Obs
 
 			]
 		});
 
-
 		//lb_PatId, ip_PatId, lb_PatName, ip_PatName, lb_Time, ip_Time, lb_Date, ip_Date, lb_Spec, ip_Spec,  lb_Obs, ip_Obs
 		//Cons_Form
-		
+
 		that._EditDialog = new sap.m.Dialog({
 			title: 'Consultation',
 			content: [Cons_Form],
 			beginButton: new sap.m.Button({
 				text: 'Update',
-				press: function () {
+				press: function() {
 					that.handlebtn_Save()
 					that._EditDialog.close();
 				}
 			}),
 			endButton: new sap.m.Button({
 				text: 'Cancel',
-				press: function () {
+				press: function() {
 					that._EditDialog.close();
 				}
 			})
 		});
-		
-		
-		
 
 		that._EditDialog.setModel(editConsModel, "editConsModel");
 
 		that._EditDialog.open();
 
-
 	},
 
-
-	handlebtn_Save: function(){
-
-
+	handlebtn_Save: function() {
 
 		var consData = that._EditDialog.getModel("editConsModel").getData();;
-
 		var url = "/UpdateConsultationById/" + consData._id;
 
 		jQuery.ajax({
@@ -230,7 +214,6 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 			}
 		});
 
-		
 		that.getData(that._id);
 		that._EditDialog.close();
 
