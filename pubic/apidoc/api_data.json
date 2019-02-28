@@ -45,7 +45,7 @@
       "examples": [
         {
           "title": "Input",
-          "content": "{\n  \"idPat\": \"2\",\n  \"namePat\": Bruna\n  \"speciality\": \"Dentist\",\n  \"time\": \"12:15:00\"\n  \"date\": \"02/03/2019\",\n  \"observations\": \"Electrocardiogram done\"\n}",
+          "content": "{\n  \"idPat\": \"2\",\n  \"namePat\": \"Bruna\"\n  \"speciality\": \"Dentist\",\n  \"time\": \"12:15:00\"\n  \"date\": \"02/03/2019\",\n  \"observations\": \"Electrocardiogram done\"\n}",
           "type": "json"
         }
       ]
@@ -348,7 +348,7 @@
       "examples": [
         {
           "title": "Input",
-          "content": "{\n  \"id\": \"2\",\n  \"name\": Joaquim\n  \"password\": \"password\",\n  \"email\": \"joaquim@mail.com\"\n}",
+          "content": "{\n  \"id\": \"2\",\n  \"name\": \"Joaquim\"\n  \"password\": \"password\",\n  \"email\": \"joaquim@mail.com\"\n}",
           "type": "json"
         }
       ]
@@ -609,7 +609,7 @@
       "examples": [
         {
           "title": "Input",
-          "content": "{\n  \"id\": \"2\",\n  \"name\": Bruna\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
+          "content": "{\n  \"id\": \"2\",\n  \"name\": \"Bruna\"\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
           "type": "json"
         }
       ]

@@ -48,7 +48,7 @@ module.exports = function(app, db) {
 	 * @apiParamExample {json} Input
 	 *    {
 	 *      "id": "2",
-	 *      "name": Bruna
+	 *      "name": "Bruna"
 	 *      "dob": "16/04/1995",
 	 *      "gender": "Female"
 	 *      "designation": "Asthmatic Patient",

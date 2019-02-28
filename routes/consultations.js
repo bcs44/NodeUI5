@@ -7,7 +7,7 @@ module.exports = function(app, db) {
 	 * @apiParamExample {json} Input
 	 *    {
 	 *      "idPat": "2",
-	 *      "namePat": Bruna
+	 *      "namePat": "Bruna"
 	 *      "speciality": "Dentist",
 	 *      "time": "12:15:00"
 	 *      "date": "02/03/2019",
