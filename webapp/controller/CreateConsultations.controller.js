@@ -52,6 +52,11 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 		that._id = e.getSource().getModel().getProperty('/modelData/' + idx).id;
 		that.getView().byId("form_cons").setTitle(that.PatName);
 
+		var patientModel = new sap.ui.model.json.JSONModel();
+		patientModel.setDefaultBindingMode("TwoWay");
+		patientModel.setData(e.getSource().getModel().getProperty('/modelData/' + idx));
+		that.getView().setModel(patientModel, "patientModel");
+
 	},
 
 	onCreateConsultations: function () {
@@ -67,6 +72,16 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 				beginButton: new sap.m.Button({
 					text: 'OK',
 					press: function () {
+						that.getOwnerComponent().getRouter()
+						.navTo("Details", {
+							Id: that.getView().getModel("patientModel").getData().id,
+							Name: that.getView().getModel("patientModel").getData().name,
+							Designation: that.getView().getModel("patientModel").getData().designation,
+							Gender: that.getView().getModel("patientModel").getData().gender,
+							idDoctor: that.getView().getModel("patientModel").getData().doctor,
+						});
+
+
 						that._successDialog.close();
 					}
 				}),

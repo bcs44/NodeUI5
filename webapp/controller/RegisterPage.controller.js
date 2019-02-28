@@ -9,40 +9,12 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 
 	_onObjectMatched: function (evt) {
 		that = this;
-		this._editable = evt.getParameter("arguments").edit;
 		var _idDoctor = evt.getParameter("arguments").idDoctor;
-
-		if (this._editable === "true") {
-			this.createEditModel(_idDoctor);
-		}
-		else {
 
 			var newDoctor = new sap.ui.model.json.JSONModel();
 			newDoctor.setDefaultBindingMode("TwoWay");
 			that.getView().setModel(newDoctor, "DoctorModel");
 			that._getLastId();
-		}
-
-	},
-
-	createEditModel: function (idDoctor) {
-
-		var oEditDoctorModel = new sap.ui.model.json.JSONModel();
-
-		var aData = jQuery.ajax({
-			type: "GET",
-			contentType: "application/json",
-			url: "/GetDoctorById/" + idDoctor,
-			dataType: "json",
-			async: false,
-			success: function (data, textStatus, jqXHR) {
-				oEditDoctorModel.setData(data[0]);
-			}
-		});
-		this.getView().byId("_buttonDelete").setVisible(true);
-		this.getView().byId("_buttonEdit").setVisible(true);
-
-		that.getView().setModel(oEditDoctorModel, "DoctorModel");
 
 	},
 
@@ -69,7 +41,7 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 			password: "",
 			email: "",
 		});
-		this.getView().byId("_buttonRegister").setVisible(true);
+	
 	},
 
 	onRegister: function () {
@@ -87,65 +59,14 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 
 			}
 		});
-		this.getOwnerComponent().getRouter()
-			.navTo("Login");
 
-	},
-
-
-	onDelete: function () {
-
-		if (!this._successDialog) {
-			this.createSuccessDialog("Deleted ");
-		}
-
-		var IdDoc = this.getView().getModel("DoctorModel").getData().id;
-
-		jQuery.ajax({
-			url: "/DeleteDoctorById/" + IdDoc,
-			type: "DELETE",
-			dataType: "json",
-			success: function (response, status) {
-				that._successDialog.open();
-				that.getOwnerComponent().getRouter()
-					.navTo("Login");
-			}
-		});
-
+		this.createSuccessDialog("Registed");
 		
 
 	},
 
-	onEdit: function () {
-		if (!this._successDialog) {
-			this.createSuccessDialog("Edited ");
-		}
 
 
-
-		var docData = this.getView().getModel("DoctorModel").getData();
-
-		var doc = {
-			id: docData.id,
-			name: docData.name,
-			password: docData.password,
-			email: docData.email
-		};
-
-		var url = "/UpdateDoctorById/" + docData.id;
-
-		jQuery.ajax({
-			url: url,
-			type: "PUT",
-			dataType: "json",
-			data: doc,
-			success: function (response, status) {
-				//console.log(response);
-			}
-		});
-
-		this._successDialog.open();
-	},
 
 	createSuccessDialog: function (x) {
 		if (!this._successDialog) {
@@ -154,12 +75,16 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 				type: 'Message',
 				state: 'Success',
 				content: new sap.m.Text({
-					text: x + 'with Success!!'
+					text: x + ' with Success!!'
 				}),
 				beginButton: new sap.m.Button({
 					text: 'OK',
 					press: function () {
-						that._successDialog.close();
+						
+						that.getOwnerComponent().getRouter()
+			.navTo("Login");
+			that._successDialog.close();
+						
 					}
 				}),
 				afterClose: function () {
@@ -167,6 +92,7 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 				}
 			});
 		}
+		this._successDialog.open();
 	},
 
 	onNavButtonPress: function () {

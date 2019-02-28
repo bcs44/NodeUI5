@@ -245,7 +245,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 			labelFor: "ip_DOB"
 		});
 		var lb_Desig = new sap.m.Label({
-			text: "Designation",
+			text: "Observations",
 			labelFor: "ip_Desig"
 		});
 		var lb_Gender = new sap.m.Label({
@@ -346,8 +346,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 
 	onEditDoctor: function () {
 		that.getOwnerComponent().getRouter()
-			.navTo("RegisterPage", {
-				"edit": "true",
+			.navTo("EditDoc", {
 				"idDoctor": that._idDoctor
 			});
 	},

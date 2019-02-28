@@ -11,7 +11,7 @@
 					<Input id="ip_cName" value="{newPatient>/name}"/>
 					<Label id="lb_cDOB" text="DOB" labelFor="ip_cDOB"></Label>
 					<DatePicker id="ip_cDOB" value="{newPatient>/dob}" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"/>
-					<Label id="lb_cDesig" text="Designation" labelFor="ip_cDesig"></Label>
+					<Label id="lb_cDesig" text="Observations" labelFor="ip_cDesig"></Label>
 					<Input id="ip_cDesig" value="{newPatient>/designation}"/>
 					<Label id="lb_cGender" text="Gender" labelFor="ip_cGender"></Label>
 					<Input id="ip_cGender" value="{newPatient>/gender}"/>
@@ -48,13 +48,13 @@
 						</table:template>
 					</table:Column>
 					<table:Column id="Coln_4">
-						<Label text="DOB"/>
+						<Label text="Date of Birth"/>
 						<table:template>
 							<Text id="txt_DOB" text="{dob}"></Text>
 						</table:template>
 					</table:Column>
 					<table:Column id="Coln_5">
-						<Label text="Desig"/>
+						<Label text="Observations"/>
 						<table:template>
 							<Text id="txt_Desig" text="{designation}"></Text>
 						</table:template>

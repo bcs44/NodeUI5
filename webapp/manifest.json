@@ -103,10 +103,17 @@
 				]
 			}, {
 				"name": "RegisterPage",
-				"pattern": "RegisterPage/{edit}/{idDoctor}",
+				"pattern": "RegisterPage/{idDoctor}",
 				"greedy": false,
 				"target": [
 					"RegisterPage"
+				]
+			}, {
+				"name": "EditDoc",
+				"pattern": "EditDoc/{idDoctor}",
+				"greedy": false,
+				"target": [
+					"EditDoc"
 				]
 			}
 
@@ -141,6 +148,12 @@
 					"transition": "slide",
 					"clearAggregation": true,
 					"viewName": "RegisterPage"
+				},
+				"EditDoc": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearAggregation": true,
+					"viewName": "EditDoc"
 				}
 				
 			}

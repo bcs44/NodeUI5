@@ -40,7 +40,6 @@ sap.ui.controller("com.bsilva.app.controller.Login", {
 	onRegister: function () {
 		that.getOwnerComponent().getRouter()
 			.navTo("RegisterPage", {
-				"edit": "false",
 				"idDoctor": "null"
 			});
 	}
