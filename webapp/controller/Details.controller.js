@@ -9,6 +9,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 
 	_onObjectMatched: function (evt) {
 
+		that = this;
 		that._id = evt.getParameter("arguments").Id;
 		that._idDoctor = evt.getParameter("arguments").idDoctor;
 		that.getData(that._id);
@@ -22,7 +23,7 @@ sap.ui.controller("com.bsilva.app.controller.Details", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/getConsultationById/" + _id,
+			url: "/getConsultationByPatientId/" + _id,
 			dataType: "json",
 			async: false,
 			success: function (data, textStatus, jqXHR) {

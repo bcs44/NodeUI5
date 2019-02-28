@@ -115,8 +115,8 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/getConsultationById/:id",
-    "title": "Get a consultation by Id",
+    "url": "/getConsultationByPatientId/:id",
+    "title": "Get consultations by Patient's Id",
     "name": "consultation",
     "group": "Consultations",
     "parameter": {
@@ -127,12 +127,12 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "id",
-            "description": "<p>Consultation's Id</p>"
+            "description": "<p>Patient's Id</p>"
           }
         ]
       }
     },
-    "description": "<p>Get a Consultation by Id (Used on Details.getData())</p>",
+    "description": "<p>Get a Consultation by Patient's Id (Used on Details.getData())</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -462,7 +462,7 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/patient/:id",
+    "url": "/DeletePatientById/:id",
     "title": "Delete Patient by Id",
     "group": "Patients",
     "parameter": {
@@ -495,7 +495,7 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/patients.js",
     "groupTitle": "Patients",
-    "name": "DeletePatientId"
+    "name": "DeleteDeletepatientbyidId"
   },
   {
     "type": "get",

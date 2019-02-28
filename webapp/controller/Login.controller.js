@@ -6,6 +6,7 @@ sap.ui.controller("com.bsilva.app.controller.Login", {
 
 	onLogin: function () {
 
+		that = this;
 		var oAuth = that.getOwnerComponent().getModel("login");
 		oAuth.refresh(false);
 

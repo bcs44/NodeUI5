@@ -8,7 +8,8 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 	},
 
 	_onObjectMatched: function (evt) {
-
+		
+		that = this;
 		that._idDoctor = evt.getParameter("arguments").idDoctor;
 
 		var newConsultation = new sap.ui.model.json.JSONModel();

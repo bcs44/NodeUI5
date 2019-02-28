@@ -1,27 +1,27 @@
 module.exports = function (app, db) {
 
 	/**
-	 * @api {post} /PostnewPatient Insert a new Patient
+	 * @api {post} /PostNewPat Insert a new Patient
 	 * @apiGroup Patients
-	 * 
-	 * 
+	 *
 	 * @apiParamExample {json} Input
 	 *    {
-	 *      "id": "2",
-	 *      "name": Bruna
-	 *      "dob": "16/04/1995",
-	 *      "gender": "Female"
-	 *      "designation": "Asthmatic Patient",
-	 *      "doctor": 2
+	 *      "designation": "diabetic",
+	 * 		"dob": "16/04/1995",
+	 * 		"gender": "Female",
+	 * 		"id": "1",
+	 * 		"name": "Bruna",
+	 * 		"doctor": "2"
 	 *    }
-	 * 
-	 * @apiSuccess  {String} Success Inserted new Patient
-	 * 
-	 * @apiDescription Insert a new Patient (Used on LadingPage.handleOperationBtncreate())
+	 *  
+	 * @apiDescription Insert a new Patient (Used on LandigPage.handleOperationBtncreate())
+	 *
+	 * @apiSuccess  {String} Success New Patient inserted
 	 * 
 	 */
 
-	app.post('PostnewPatient', (req, res) => {
+	app.post('/PostNewPat', (req, res) => {
+		console.log("aqui ja entra");
 		var pat = req.body;
 		db.collection('patdata', function (err, collection) {
 			collection.insert(pat, {
@@ -37,6 +37,7 @@ module.exports = function (app, db) {
 			});
 		});
 	});
+
 
 	/**
 	 * @api {put} /UpdatePatientById/:id Modify a Patient by Id
@@ -111,7 +112,7 @@ module.exports = function (app, db) {
 	});
 
 	/**
-	 * @api {delete} /patient/:id Delete Patient by Id
+	 * @api {delete} /DeletePatientById/:id Delete Patient by Id
 	 * @apiGroup Patients
 	 * @apiParam {String} id Patient's id.
 	 * @apiSuccess {String} Success Patient Deleted

@@ -7,7 +7,8 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 	},
 
 	_onObjectMatched: function (evt) {
-
+		
+		that = this;
 		var _name = evt.getParameter("arguments").Name;
 		that._idDoctor = evt.getParameter("arguments").Id;
 		sap.ui.getCore().byId(that.getView().sId + "--idPage").setTitle("Doctor " + _name);
@@ -66,7 +67,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var aData = jQuery.ajax({
 			type: "GET",
 			contentType: "application/json",
-			url: "/getPatientById/" + sap.ui.getCore().byId(that.getView().sId + "--ip_sPatId"),
+			url: "/getPatientById/" + sap.ui.getCore().byId(that.getView().sId + "--ip_sPatId").getProperty("value"),
 			dataType: "json",
 			async: false,
 			success: function (data, textStatus, jqXHR) {
@@ -75,6 +76,17 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		});
 
 		var searchModel = that.getView().getModel("searchPatient");
+
+		if(!searchModel){
+			var searchModel = new sap.ui.model.json.JSONModel();
+			searchModel.setDefaultBindingMode("TwoWay");
+		that.getView().setModel(searchModel, "searchPatient");
+		that.getView().getModel("searchPatient").setData({
+			visible: false
+		});
+		that.getView().getModel("searchPatient").refresh(false);
+		}
+
 		searchModel.setData({
 			visible: true,
 			name: patdata[0].name,
@@ -90,6 +102,7 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 		var oNewPatient = that.getView().getModel("newPatient");
 		oNewPatient.refresh(false);
 
+
 		var patData = {
 			"designation": oNewPatient.getData().designation,
 			"dob": oNewPatient.getData().dob,
@@ -98,15 +111,15 @@ sap.ui.controller("com.bsilva.app.controller.LandingPage", {
 			"name": oNewPatient.getData().name,
 			"doctor": that._idDoctor
 		};
-
 		var aData = jQuery.ajax({
 			type: "POST",
-			url: "/PostnewPatient",
+			url: "/PostNewPat",
 			dataType: "json",
 			data: patData,
 			async: false,
 			success: function (response, status) {
 				//console.log(response + status);
+
 			}
 
 		});

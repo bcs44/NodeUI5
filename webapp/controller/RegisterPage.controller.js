@@ -8,6 +8,7 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 	},
 
 	_onObjectMatched: function (evt) {
+		that = this;
 		this._editable = evt.getParameter("arguments").edit;
 		var _idDoctor = evt.getParameter("arguments").idDoctor;
 
@@ -105,13 +106,13 @@ sap.ui.controller("com.bsilva.app.controller.RegisterPage", {
 			type: "DELETE",
 			dataType: "json",
 			success: function (response, status) {
-
+				that._successDialog.open();
+				that.getOwnerComponent().getRouter()
+					.navTo("Login");
 			}
 		});
 
-		this._successDialog.open();
-		that.getOwnerComponent().getRouter()
-			.navTo("Login");
+		
 
 	},
 

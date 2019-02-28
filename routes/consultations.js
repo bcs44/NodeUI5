@@ -21,6 +21,7 @@ module.exports = function (app, db) {
 	 */
 
 	app.post('/PostNewConsultation', (req, res) => {
+		console.log("aqui ja entra");
 		var cons = req.body;
 		db.collection('consdata', function (err, collection) {
 			collection.insert(cons, {
@@ -38,13 +39,13 @@ module.exports = function (app, db) {
 	});
 
 	/**
-	 * @api {get} /getConsultationById/:id Get a consultation by Id
+	 * @api {get} /getConsultationByPatientId/:id Get consultations by Patient's Id
 	 * @apiName consultation
 	 * @apiGroup Consultations
 	 *
-	 * @apiParam {String} id Consultation's Id
+	 * @apiParam {String} id Patient's Id
 	 *  
-	 * @apiDescription Get a Consultation by Id (Used on Details.getData())
+	 * @apiDescription Get a Consultation by Patient's Id (Used on Details.getData())
 	 *
 	 * @apiSuccess  {String} idPat Patient's ID
 	 * @apiSuccess  {String} namePat Patient's Name
@@ -54,7 +55,7 @@ module.exports = function (app, db) {
 	 * 
 	 */
 
-	app.get('/getConsultationById/:id', (req, res) => {
+	app.get('/getConsultationByPatientId/:id', (req, res) => {
 		var consId = req.params.id;
 		db.collection('consdata', function (err, collection) {
 			collection.find({
