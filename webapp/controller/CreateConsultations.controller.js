@@ -1,14 +1,14 @@
 sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 
-	onInit: function () {
+	onInit: function() {
 
 		that = this;
 		that.getOwnerComponent().getRouter().getRoute("CreateConsultations").attachPatternMatched(that._onObjectMatched, that);
 
 	},
 
-	_onObjectMatched: function (evt) {
-		
+	_onObjectMatched: function(evt) {
+
 		that = this;
 		that._idDoctor = evt.getParameter("arguments").idDoctor;
 
@@ -20,7 +20,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 
 	},
 
-	_getPatients: function (idDoctor) {
+	_getPatients: function(idDoctor) {
 
 		var oModel = new sap.ui.model.json.JSONModel();
 
@@ -30,7 +30,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 			url: "/GetPatientByDoctor/" + idDoctor,
 			dataType: "json",
 			async: false,
-			success: function (data, textStatus, jqXHR) {
+			success: function(data, textStatus, jqXHR) {
 				oModel.setData({
 					modelData: data
 				});
@@ -44,7 +44,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 
 	},
 
-	rowSelect: function (e) {
+	rowSelect: function(e) {
 
 		var idx = e.getParameter('rowIndex');
 		that.PatName = e.getSource().getModel().getProperty('/modelData/' + idx).name;
@@ -59,7 +59,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 
 	},
 
-	onCreateConsultations: function () {
+	onCreateConsultations: function() {
 
 		if (!that._successDialog) {
 			that._successDialog = new sap.m.Dialog({
@@ -71,21 +71,20 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 				}),
 				beginButton: new sap.m.Button({
 					text: 'OK',
-					press: function () {
+					press: function() {
 						that.getOwnerComponent().getRouter()
-						.navTo("Details", {
-							Id: that.getView().getModel("patientModel").getData().id,
-							Name: that.getView().getModel("patientModel").getData().name,
-							Designation: that.getView().getModel("patientModel").getData().designation,
-							Gender: that.getView().getModel("patientModel").getData().gender,
-							idDoctor: that.getView().getModel("patientModel").getData().doctor,
-						});
-
+							.navTo("Details", {
+								Id: that.getView().getModel("patientModel").getData().id,
+								Name: that.getView().getModel("patientModel").getData().name,
+								Designation: that.getView().getModel("patientModel").getData().designation,
+								Gender: that.getView().getModel("patientModel").getData().gender,
+								idDoctor: that.getView().getModel("patientModel").getData().doctor,
+							});
 
 						that._successDialog.close();
 					}
 				}),
-				afterClose: function () {
+				afterClose: function() {
 					that._successDialog.destroy();
 				}
 			});
@@ -107,7 +106,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 			dataType: "json",
 			data: consData,
 			async: false,
-			success: function (response, status) {
+			success: function(response, status) {
 				//console.log(response + status);
 
 			}
@@ -118,7 +117,7 @@ sap.ui.controller("com.bsilva.app.controller.CreateConsultations", {
 
 	},
 
-	onNavButtonPress: function () {
+	onNavButtonPress: function() {
 		var oAuth = that.getOwnerComponent().getModel("login");
 		var name = oAuth.getData()[0].name;
 

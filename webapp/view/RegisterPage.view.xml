@@ -19,7 +19,7 @@
 				<Input id="ipr_email" value="{DoctorModel>/email}" enabled="true" type="Email"/>
 			</VBox>
 			<HBox alignItems="Center" class="sapUiMediumMarginTop" justifyContent="Center">
-				<Button id="_buttonRegister" press="onRegister" text="Register" />
+				<Button id="_buttonRegister" press="onRegister" text="Register"/>
 			</HBox>
 		</content>
 	</Page>

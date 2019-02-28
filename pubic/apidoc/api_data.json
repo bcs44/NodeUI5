@@ -558,18 +558,19 @@
   },
   {
     "type": "post",
-    "url": "/PostnewPatient",
+    "url": "/PostNewPat",
     "title": "Insert a new Patient",
     "group": "Patients",
     "parameter": {
       "examples": [
         {
           "title": "Input",
-          "content": "{\n  \"id\": \"2\",\n  \"name\": Bruna\n  \"dob\": \"16/04/1995\",\n  \"gender\": \"Female\"\n  \"designation\": \"Asthmatic Patient\",\n  \"doctor\": 2\n}",
+          "content": "   {\n     \"designation\": \"diabetic\",\n\t\t\"dob\": \"16/04/1995\",\n\t\t\"gender\": \"Female\",\n\t\t\"id\": \"1\",\n\t\t\"name\": \"Bruna\",\n\t\t\"doctor\": \"2\"\n   }",
           "type": "json"
         }
       ]
     },
+    "description": "<p>Insert a new Patient (Used on LandigPage.handleOperationBtncreate())</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -578,16 +579,15 @@
             "type": "String",
             "optional": false,
             "field": "Success",
-            "description": "<p>Inserted new Patient</p>"
+            "description": "<p>New Patient inserted</p>"
           }
         ]
       }
     },
-    "description": "<p>Insert a new Patient (Used on LadingPage.handleOperationBtncreate())</p>",
     "version": "0.0.0",
     "filename": "./routes/patients.js",
     "groupTitle": "Patients",
-    "name": "PostPostnewpatient"
+    "name": "PostPostnewpat"
   },
   {
     "type": "put",

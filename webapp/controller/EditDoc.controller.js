@@ -1,22 +1,21 @@
 sap.ui.controller("com.bsilva.app.controller.EditDoc", {
 
-	onInit: function () {
+	onInit: function() {
 
 		that = this;
 		that.getOwnerComponent().getRouter().getRoute("EditDoc").attachPatternMatched(that._onObjectMatched, that);
 
 	},
 
-	_onObjectMatched: function (evt) {
+	_onObjectMatched: function(evt) {
 		that = this;
 		var _idDoctor = evt.getParameter("arguments").idDoctor;
 
-		
-			this.createEditModel(_idDoctor);
+		this.createEditModel(_idDoctor);
 
 	},
 
-	createEditModel: function (idDoctor) {
+	createEditModel: function(idDoctor) {
 
 		var oEditDoctorModel = new sap.ui.model.json.JSONModel();
 
@@ -26,7 +25,7 @@ sap.ui.controller("com.bsilva.app.controller.EditDoc", {
 			url: "/GetDoctorById/" + idDoctor,
 			dataType: "json",
 			async: false,
-			success: function (data, textStatus, jqXHR) {
+			success: function(data, textStatus, jqXHR) {
 				oEditDoctorModel.setData(data[0]);
 			}
 		});
@@ -37,11 +36,9 @@ sap.ui.controller("com.bsilva.app.controller.EditDoc", {
 
 	},
 
-	onDelete: function () {
+	onDelete: function() {
 
-		
-			this.createSuccessDialog("Deleted ");
-		
+		this.createSuccessDialog("Deleted ");
 
 		var IdDoc = this.getView().getModel("DoctorModel").getData().id;
 
@@ -49,23 +46,18 @@ sap.ui.controller("com.bsilva.app.controller.EditDoc", {
 			url: "/DeleteDoctorById/" + IdDoc,
 			type: "DELETE",
 			dataType: "json",
-			success: function (response, status) {
+			success: function(response, status) {
 				that._successDialog.open();
 				that.getOwnerComponent().getRouter()
 					.navTo("Login");
 			}
 		});
 
-		
-
 	},
 
-	onEdit: function () {
-		
-			this.createSuccessDialog("Edited ");
-		
+	onEdit: function() {
 
-
+		this.createSuccessDialog("Edited ");
 
 		var docData = this.getView().getModel("DoctorModel").getData();
 
@@ -83,7 +75,7 @@ sap.ui.controller("com.bsilva.app.controller.EditDoc", {
 			type: "PUT",
 			dataType: "json",
 			data: doc,
-			success: function (response, status) {
+			success: function(response, status) {
 				//console.log(response);
 			}
 		});
@@ -91,37 +83,37 @@ sap.ui.controller("com.bsilva.app.controller.EditDoc", {
 		//this._successDialog.open();
 	},
 
-	createSuccessDialog: function (x) {
-		
-			this._successDialog = new sap.m.Dialog({
-				title: 'Success',
-				type: 'Message',
-				state: 'Success',
-				content: new sap.m.Text({
-					text: x + 'with Success!!'
-				}),
-				beginButton: new sap.m.Button({
-					text: 'OK',
-					press: function () {
-						that._successDialog.close();
-					}
-				}),
-				afterClose: function () {
-					that._successDialog.destroy();
+	createSuccessDialog: function(x) {
+
+		this._successDialog = new sap.m.Dialog({
+			title: 'Success',
+			type: 'Message',
+			state: 'Success',
+			content: new sap.m.Text({
+				text: x + 'with Success!!'
+			}),
+			beginButton: new sap.m.Button({
+				text: 'OK',
+				press: function() {
+					that._successDialog.close();
 				}
-			});
-			this._successDialog.open();
+			}),
+			afterClose: function() {
+				that._successDialog.destroy();
+			}
+		});
+		this._successDialog.open();
 	},
 
-	onNavButtonPress: function () {
-	
-			var IdDoc = this.getView().getModel("DoctorModel").getData().id;
-			var NameDoc = this.getView().getModel("DoctorModel").getData().name;
-			that.getOwnerComponent().getRouter()
-				.navTo("LandingPage", {
-					Name: NameDoc,
-					Id: IdDoc
-				});
+	onNavButtonPress: function() {
+
+		var IdDoc = this.getView().getModel("DoctorModel").getData().id;
+		var NameDoc = this.getView().getModel("DoctorModel").getData().name;
+		that.getOwnerComponent().getRouter()
+			.navTo("LandingPage", {
+				Name: NameDoc,
+				Id: IdDoc
+			});
 	}
 
 });

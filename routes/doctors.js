@@ -1,4 +1,4 @@
-module.exports = function (app, db) {
+module.exports = function(app, db) {
 
 	/**
 	 * @api {get} /getLastDoctor Request last Doctor information
@@ -14,8 +14,8 @@ module.exports = function (app, db) {
 	 */
 
 	app.get('/getLastDoctor', (req, res) => {
-		db.collection('docdata', function (err, collection) {
-			collection.find().toArray(function (err, items) {
+		db.collection('docdata', function(err, collection) {
+			collection.find().toArray(function(err, items) {
 				//console.log(items);
 				var x = 0;
 				for (var i = 0; i < items.length; i++) {
@@ -51,10 +51,10 @@ module.exports = function (app, db) {
 	app.post('/PostNewDoctor', (req, res) => {
 		var doc = req.body;
 		//console.log('Adding Doctor: ' + JSON.stringify(doc));
-		db.collection('docdata', function (err, collection) {
+		db.collection('docdata', function(err, collection) {
 			collection.insert(doc, {
 				safe: true
-			}, function (err, result) {
+			}, function(err, result) {
 				if (err) {
 					res.send({
 						'error': 'An error has occurred'
@@ -89,7 +89,7 @@ module.exports = function (app, db) {
 			password: req.params.password
 		};
 
-		db.collection('docdata').find(myquery).toArray(function (err, items) {
+		db.collection('docdata').find(myquery).toArray(function(err, items) {
 			res.send(items);
 
 		})
@@ -103,23 +103,21 @@ module.exports = function (app, db) {
 	 * @apiDescription Delete Doctor by Id (Used on RegisterPage.onDelete())
 	 */
 
-
 	app.delete('/DeleteDoctorById/:id', (req, res) => {
 		var docToDelete = req.params.id;
 		console.log(docToDelete);
-		db.collection('docdata', function (err, collection) {
+		db.collection('docdata', function(err, collection) {
 			collection.remove({
 				'id': docToDelete
-			}, function (err) {
+			}, function(err) {
 				res.send((err === null) ? {
 					msg: ''
 				} : {
-						msg: 'error: ' + err
-					});
+					msg: 'error: ' + err
+				});
 			})
 		})
 	});
-
 
 	/**
 	 * @api {put} /UpdateDoctorById/:id Modify a Doctor by Id
@@ -148,10 +146,10 @@ module.exports = function (app, db) {
 		var doc = req.body;
 		console.log(id);
 		console.log(doc);
-		db.collection('docdata', function (err, collection) {
+		db.collection('docdata', function(err, collection) {
 			collection.update({
 				'id': id
-			}, doc, function (err, result) {
+			}, doc, function(err, result) {
 				if (err) {
 					res.send({
 						'error': err
@@ -163,7 +161,6 @@ module.exports = function (app, db) {
 			});
 		});
 	});
-
 
 	/**
 	 * @api {get} /GetDoctorById/:id Get a Doctor by Id
@@ -183,10 +180,10 @@ module.exports = function (app, db) {
 	app.get('/GetDoctorById/:id', (req, res) => {
 		console.log("entrou");
 		var docId = req.params.id;
-		db.collection('docdata', function (err, collection) {
+		db.collection('docdata', function(err, collection) {
 			collection.find({
 				id: docId
-			}).toArray(function (err, items) {
+			}).toArray(function(err, items) {
 				res.send(items);
 			});
 
