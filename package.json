@@ -2,6 +2,15 @@
   "name": "bruna",
   "version": "0.1.1",
   "private": true,
+  "description": "node app ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "dependencies": {
     "express": "^3.21.2",
     "mongodb": "^2.2.36",

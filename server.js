@@ -23,7 +23,7 @@ MongoClient.connect(db.url, (err, database) => {
 
   require('./routes')(app, database);
 
-  app.listen(port, () => {
+  app.listen(process.env.PORT ||port, () => {
     console.log('Servidor ativo na porta: ' + port);
   });
 
